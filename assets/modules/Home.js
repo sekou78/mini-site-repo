@@ -60,9 +60,7 @@ class Home {
         });
 
       const projectLanguages = responseLanguages.data;
-      // console.log(projectLanguages);
       recentsProjects[i].languages = projectLanguages;
-      // console.log(recentsProjects[i].languages);
     }
     this.updateHTMLProjects(recentsProjects);
   }
@@ -83,8 +81,6 @@ class Home {
       const project = projects[i];
       this.projectsTitle[htmlIndex].textContent = project.name;
       this.projectsDescription[htmlIndex].textContent = project.description;
-      // const languages = project.languages;
-      // console.log(languages);
 
       this.createHTMLLanguageTag(
         this.projectsTagsContainer[i],
@@ -95,18 +91,12 @@ class Home {
   }
 
   createHTMLLanguageTag(div, languages) {
-    //où ? Je crée mes éléments HTML
-    //quels éléments ? les langages
-    console.log("div", div);
-    console.log("languages", languages);
     const arrayLanguages = Object.keys(languages);
-    // console.log("array", arrayLanguages);
     for (let i = 0; i < arrayLanguages.length; i++) {
       const span = document.createElement("span");
       span.textContent = arrayLanguages[i];
       div.appendChild(span);
     }
-    console.log("array", arrayLanguages);
   }
 }
 
