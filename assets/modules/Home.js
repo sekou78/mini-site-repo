@@ -6,11 +6,11 @@ class Home {
     this.profilHTML = document.querySelector(".js-home-profil-url");
     this.avatarHTML = document.querySelector(".js-home-avatar");
 
-    this.projectTitle = document.querySelector(".js-home-project-title");
-    this.projectDescription = document.querySelector(
+    this.projectsTitle = document.querySelectorAll(".js-home-project-title");
+    this.projectsDescription = document.querySelectorAll(
       ".js-home-project-description"
     );
-    this.projectTagsContainer = document.querySelector(
+    this.projectsTagsContainer = document.querySelectorAll(
       ".js-home-project-tags-container"
     );
 
@@ -27,7 +27,7 @@ class Home {
     fetch("https://api.github.com/users/sekou78")
       .then((response) => response.json())
       .then((data) => {
-        this.updateHTML(data);
+        this.updateHTMLUser(data);
       })
       .catch((error) => {
         console.log("ERREUR lors de l'appel api getReposInformation", error);
@@ -35,35 +35,36 @@ class Home {
   }
 
   async getReposInformations() {
-    //API exemple #2 : Récuperer le contenu avec l'Octokit JS et avec "async / await"
-    // console.log(this.projectTitle);
-    // console.log(this.projectDescription);
-    // console.log(this.projectTagsContainer);
-
-    // console.log(Octokit);
     const octokit = new Octokit();
     //URL de l'API classique : https://api.github.com/users/sekou78/repos
     const response = await octokit
-      //   .request("GET /users/sekou78/re-pos")
       .request("GET /users/sekou78/repos")
       .catch((error) => {
         console.log("ERREUR lors de l'appel api getReposInformation", error);
       });
-    // if (response.status !== 200) {
-    //   console.log("ERREUR lors de l'appel api");
-    // }
-    const data = response.data;
-    console.log(data);
-    // console.log(response);
+    this.updateHTMLProjects(response.data);
   }
 
-  updateHTML(APIdata) {
+  updateHTMLUser(APIdata) {
     //Afficher la description de mon profil Github
     this.descriptionHTML.textContent = APIdata.bio;
     //Afficher l'url de mon profil github
     this.profilHTML.setAttribute("href", APIdata.html_url);
     //Afficher mon avatar
     this.avatarHTML.setAttribute("src", APIdata.avatar_url);
+  }
+
+  updateHTMLProjects(projects) {
+    const maxIndex = projects.length - 1;
+    let htmlIndex = 0;
+    for (let i = maxIndex; i > maxIndex - 3; i--) {
+      const project = projects[i];
+      this.projectsTitle[htmlIndex].textContent = project.name;
+      this.projectsDescription[htmlIndex].textContent = project.description;
+      const topics = project.topics;
+      console.log(topics);
+      htmlIndex++;
+    }
   }
 }
 
