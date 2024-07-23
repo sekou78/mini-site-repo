@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="sass/main.css" />
     <title>Bienvenue sur mon site | Portfolio de Sékou</title>
   </head>
-  <body>
+  <body class="home">
     <header class="header">
       <!--Méthode BEM en sass: header__home--link-->
       <a href="/" class="header__back--home">
@@ -35,12 +35,17 @@
     </header>
 
     <main>
-      <section>
-        <p>Portfolio</p>
-        <h1>Hello, je suis Sékou</h1>
-        <p class="js-home-description"></p>
+      <section class="hero">
+        <p class="hero__subtitle">Portfolio</p>
+        <h1 class="hero__title">Hello, je suis Sékou</h1>
+        <p class="hero__description js-home-description">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat
+          praesentium assumenda sint delectus saepe voluptate, et blanditiis
+          doloremque laboriosam ipsum corporis nihil architecto! Nemo minima
+          dolores, dicta doloribus excepturi omnis.
+        </p>
 
-        <a class="button" href="/tous-mes-projets.html">
+        <a class="hero__button button" href="/tous-mes-projets.html">
           <svg
             class="button__icon"
             xmlns="http://www.w3.org/2000/svg"
@@ -52,7 +57,10 @@
           <span class="button__label">Voir les cours</span>
         </a>
 
-        <a href="" class="js-home-profil-url button--secondary" target="_blank">
+        <a
+          href=""
+          class="hero__button js-home-profil-url button--secondary"
+          target="_blank">
           <svg
             class="button__icon"
             xmlns="http://www.w3.org/2000/svg"
@@ -64,13 +72,12 @@
           <span class="button__label">Accéder à mon Github</span>
         </a>
 
-        <div>
+        <div class="hero__avatar">
           <img
-            src=""
+            src="https://picsum.photos/seed/picsum/500"
             class="js-home-avatar"
             aria-disabled="true"
-            alt="Avatars"
-            style="width: 50px" />
+            alt="Avatars" />
         </div>
       </section>
 
